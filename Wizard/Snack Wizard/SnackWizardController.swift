@@ -12,7 +12,7 @@ typealias SnackWizard = Wizard<SnacksScreen, Event>
 
 ///
 /// Sample wizard to enable the user to select a snack
-///````
+///```
 /// Flows are:
 /// - choose snack
 ///   - icecream
@@ -21,7 +21,7 @@ typealias SnackWizard = Wizard<SnacksScreen, Event>
 ///       - choc dip
 ///       - sprinkles
 ///  - nuts
-///````
+///```
 ///
 /// This class is responsible for creating and starting coordinators
 /// and for defining the screen navigation. For a real app the screen navigations would probably be
