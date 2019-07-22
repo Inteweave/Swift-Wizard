@@ -7,7 +7,8 @@ Inteweave has developed many self-install kits since 2004 and has used this meth
 What we are aiming for is to have each screen and it's coordinator independent of any other screen. The UX flow shows how the screens should be linked and the wizard code represents that directly. The order of the steps can be coded or input as a data file. The wizard definition is *Viewing screen X, on event Y, go to screen Z*
 
 For example, we have the following steps to choose a snack:
-```- choose snack
+```
+- choose snack
    - icecream
      - cone
      - soft serve
@@ -16,7 +17,8 @@ For example, we have the following steps to choose a snack:
    - nuts
 ```
 The UX flow is coded as:
-```ScreenNavigation(from: SnacksScreen.selectType, event: Event.userDidChooseIceCream, to: SnacksScreen.iceCreamServe),
+```
+ScreenNavigation(from: SnacksScreen.selectType, event: Event.userDidChooseIceCream, to: SnacksScreen.iceCreamServe),
 
 ScreenNavigation(from: SnacksScreen.iceCreamServe, event: Event.userDidChooseSoftServe, to: SnacksScreen.chooseTopping),
 ScreenNavigation(from: SnacksScreen.iceCreamServe, event: Event.userDidChooseIceCreamCone, to: SnacksScreen.cone),
