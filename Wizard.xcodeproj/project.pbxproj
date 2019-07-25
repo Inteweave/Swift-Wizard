@@ -8,32 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		B2026AF022DFF3D5004EC7F8 /* ScreenNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2026AEF22DFF3D5004EC7F8 /* ScreenNavigation.swift */; };
-		B2026AF222DFF4C0004EC7F8 /* CoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2026AF122DFF4C0004EC7F8 /* CoordinatorFactory.swift */; };
 		B2026AF422DFFA68004EC7F8 /* WizardError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2026AF322DFFA68004EC7F8 /* WizardError.swift */; };
 		B2026AF622DFFE2E004EC7F8 /* SnackWizardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2026AF522DFFE2E004EC7F8 /* SnackWizardController.swift */; };
 		B2026AFB22E17645004EC7F8 /* SnacksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2026AFA22E17645004EC7F8 /* SnacksViewController.swift */; };
 		B2026AFD22E178E8004EC7F8 /* SnacksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2026AFC22E178E8004EC7F8 /* SnacksViewController.xib */; };
-		B2026AFF22E1792A004EC7F8 /* SnacksCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2026AFE22E1792A004EC7F8 /* SnacksCoordinator.swift */; };
-		B2026B0122E26FCF004EC7F8 /* BackButtonEventDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2026B0022E26FCF004EC7F8 /* BackButtonEventDetector.swift */; };
+		B2026AFF22E1792A004EC7F8 /* SnacksViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2026AFE22E1792A004EC7F8 /* SnacksViewPresenter.swift */; };
 		B2026B0522E3E8AF004EC7F8 /* SnacksScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2026B0422E3E8AF004EC7F8 /* SnacksScreens.swift */; };
 		B25F72CA22DFE1C8000D024A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25F72C922DFE1C8000D024A /* AppDelegate.swift */; };
 		B25F72CC22DFE1C8000D024A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25F72CB22DFE1C8000D024A /* ViewController.swift */; };
 		B25F72CF22DFE1C8000D024A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B25F72CD22DFE1C8000D024A /* Main.storyboard */; };
 		B25F72D122DFE1CB000D024A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B25F72D022DFE1CB000D024A /* Assets.xcassets */; };
 		B25F72D422DFE1CB000D024A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B25F72D222DFE1CB000D024A /* LaunchScreen.storyboard */; };
-		B25F72E022DFE605000D024A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25F72DF22DFE605000D024A /* Coordinator.swift */; };
 		B25F72E222DFE6AB000D024A /* Wizard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25F72E122DFE6AB000D024A /* Wizard.swift */; };
+		B2D2E9A422EA625100308A4A /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2E9A322EA625100308A4A /* Event.swift */; };
+		B2D2E9A622EA628300308A4A /* SnackFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2E9A522EA628300308A4A /* SnackFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B2026AEF22DFF3D5004EC7F8 /* ScreenNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenNavigation.swift; sourceTree = "<group>"; };
-		B2026AF122DFF4C0004EC7F8 /* CoordinatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactory.swift; sourceTree = "<group>"; };
 		B2026AF322DFFA68004EC7F8 /* WizardError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WizardError.swift; sourceTree = "<group>"; };
 		B2026AF522DFFE2E004EC7F8 /* SnackWizardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackWizardController.swift; sourceTree = "<group>"; };
 		B2026AFA22E17645004EC7F8 /* SnacksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnacksViewController.swift; sourceTree = "<group>"; };
 		B2026AFC22E178E8004EC7F8 /* SnacksViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SnacksViewController.xib; sourceTree = "<group>"; };
-		B2026AFE22E1792A004EC7F8 /* SnacksCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnacksCoordinator.swift; sourceTree = "<group>"; };
-		B2026B0022E26FCF004EC7F8 /* BackButtonEventDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonEventDetector.swift; sourceTree = "<group>"; };
+		B2026AFE22E1792A004EC7F8 /* SnacksViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnacksViewPresenter.swift; sourceTree = "<group>"; };
 		B2026B0422E3E8AF004EC7F8 /* SnacksScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnacksScreens.swift; sourceTree = "<group>"; };
 		B25F72C622DFE1C8000D024A /* Wizard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wizard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B25F72C922DFE1C8000D024A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,8 +39,9 @@
 		B25F72D022DFE1CB000D024A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B25F72D322DFE1CB000D024A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B25F72D522DFE1CB000D024A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B25F72DF22DFE605000D024A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		B25F72E122DFE6AB000D024A /* Wizard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wizard.swift; sourceTree = "<group>"; };
+		B2D2E9A322EA625100308A4A /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		B2D2E9A522EA628300308A4A /* SnackFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +75,6 @@
 			isa = PBXGroup;
 			children = (
 				B25F72E722DFEC81000D024A /* Snack Wizard */,
-				B25F72DE22DFE551000D024A /* Coordinator */,
 				B25F72DD22DFE45D000D024A /* Wizard */,
 				B25F72C922DFE1C8000D024A /* AppDelegate.swift */,
 				B25F72CB22DFE1C8000D024A /* ViewController.swift */,
@@ -99,24 +96,16 @@
 			path = Wizard;
 			sourceTree = "<group>";
 		};
-		B25F72DE22DFE551000D024A /* Coordinator */ = {
-			isa = PBXGroup;
-			children = (
-				B25F72DF22DFE605000D024A /* Coordinator.swift */,
-			);
-			path = Coordinator;
-			sourceTree = "<group>";
-		};
 		B25F72E722DFEC81000D024A /* Snack Wizard */ = {
 			isa = PBXGroup;
 			children = (
 				B2026AF522DFFE2E004EC7F8 /* SnackWizardController.swift */,
 				B2026AFA22E17645004EC7F8 /* SnacksViewController.swift */,
 				B2026AFC22E178E8004EC7F8 /* SnacksViewController.xib */,
-				B2026AFE22E1792A004EC7F8 /* SnacksCoordinator.swift */,
-				B2026B0022E26FCF004EC7F8 /* BackButtonEventDetector.swift */,
-				B2026AF122DFF4C0004EC7F8 /* CoordinatorFactory.swift */,
+				B2026AFE22E1792A004EC7F8 /* SnacksViewPresenter.swift */,
 				B2026B0422E3E8AF004EC7F8 /* SnacksScreens.swift */,
+				B2D2E9A322EA625100308A4A /* Event.swift */,
+				B2D2E9A522EA628300308A4A /* SnackFactory.swift */,
 			);
 			path = "Snack Wizard";
 			sourceTree = "<group>";
@@ -194,17 +183,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2026AFB22E17645004EC7F8 /* SnacksViewController.swift in Sources */,
+				B2D2E9A422EA625100308A4A /* Event.swift in Sources */,
 				B25F72E222DFE6AB000D024A /* Wizard.swift in Sources */,
-				B2026AFF22E1792A004EC7F8 /* SnacksCoordinator.swift in Sources */,
+				B2026AFF22E1792A004EC7F8 /* SnacksViewPresenter.swift in Sources */,
 				B2026B0522E3E8AF004EC7F8 /* SnacksScreens.swift in Sources */,
+				B2D2E9A622EA628300308A4A /* SnackFactory.swift in Sources */,
 				B25F72CC22DFE1C8000D024A /* ViewController.swift in Sources */,
 				B2026AF022DFF3D5004EC7F8 /* ScreenNavigation.swift in Sources */,
 				B2026AF422DFFA68004EC7F8 /* WizardError.swift in Sources */,
 				B25F72CA22DFE1C8000D024A /* AppDelegate.swift in Sources */,
-				B2026B0122E26FCF004EC7F8 /* BackButtonEventDetector.swift in Sources */,
-				B25F72E022DFE605000D024A /* Coordinator.swift in Sources */,
 				B2026AF622DFFE2E004EC7F8 /* SnackWizardController.swift in Sources */,
-				B2026AF222DFF4C0004EC7F8 /* CoordinatorFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

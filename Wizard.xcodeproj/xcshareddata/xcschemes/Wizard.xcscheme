@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B25F72C522DFE1C8000D024A"
-               BuildableName = "Navigator.app"
-               BlueprintName = "Navigator"
-               ReferencedContainer = "container:Navigator.xcodeproj">
+               BuildableName = "Wizard.app"
+               BlueprintName = "Wizard"
+               ReferencedContainer = "container:Wizard.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B25F72C522DFE1C8000D024A"
-            BuildableName = "Navigator.app"
-            BlueprintName = "Navigator"
-            ReferencedContainer = "container:Navigator.xcodeproj">
+            BuildableName = "Wizard.app"
+            BlueprintName = "Wizard"
+            ReferencedContainer = "container:Wizard.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B25F72C522DFE1C8000D024A"
-            BuildableName = "Navigator.app"
-            BlueprintName = "Navigator"
-            ReferencedContainer = "container:Navigator.xcodeproj">
+            BuildableName = "Wizard.app"
+            BlueprintName = "Wizard"
+            ReferencedContainer = "container:Wizard.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -85,9 +85,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B25F72C522DFE1C8000D024A"
-            BuildableName = "Navigator.app"
-            BlueprintName = "Navigator"
-            ReferencedContainer = "container:Navigator.xcodeproj">
+            BuildableName = "Wizard.app"
+            BlueprintName = "Wizard"
+            ReferencedContainer = "container:Wizard.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

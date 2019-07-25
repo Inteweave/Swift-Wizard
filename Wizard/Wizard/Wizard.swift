@@ -16,17 +16,14 @@ import Foundation
 /// * **WizardEvent**: The type of the event raised; normally an enum
 ///
 class Wizard<ScreenIdentifier: Equatable, WizardEvent: Equatable> {
-    var currentScreen: ScreenIdentifier
-    var screenStack = [ScreenIdentifier]()
+
     let screenNavigations: [ScreenNavigation<ScreenIdentifier, WizardEvent>]
 
     ///
     /// Create an instance of the Wizard
     ///
-    init(screenNavigations: [ScreenNavigation<ScreenIdentifier, WizardEvent>],
-         startScreen: ScreenIdentifier) {
+    init(screenNavigations: [ScreenNavigation<ScreenIdentifier, WizardEvent>]) {
         self.screenNavigations = screenNavigations
-        self.currentScreen = startScreen
     }
 
     ///
@@ -35,14 +32,11 @@ class Wizard<ScreenIdentifier: Equatable, WizardEvent: Equatable> {
     /// - parameter event: The event that occurred on the current screen
     /// - returns: The *ScreenIdentifier* for the event
     ///
-    func onEvent(event: WizardEvent) throws -> ScreenIdentifier {
-        let navigations = screenNavigations.filter { $0.event == event && $0.from == currentScreen }
+    func event(event: WizardEvent, wasRaisedOnScreen currentScreen: ScreenIdentifier) throws -> ScreenIdentifier {
+        let navigations = screenNavigations.filter { $0.when == event && $0.onScreen == currentScreen }
         switch navigations.count {
         case 1:
-            screenStack.append(currentScreen)
-            // we have navigated to the to screen so update the current screen
-            currentScreen = navigations.first!.to
-            return currentScreen
+            return navigations.first!.navigateTo
         case 0:
             throw WizardError.noEvent("\(event)", foundForScreen: currentScreen)
         default:
@@ -50,12 +44,4 @@ class Wizard<ScreenIdentifier: Equatable, WizardEvent: Equatable> {
         }
     }
 
-    ///
-    /// Used when the wizard has gone back a screen
-    ///
-    func back() {
-        if let screenIdentifier = screenStack.popLast()  {
-            currentScreen = screenIdentifier
-        }
-    }
 }

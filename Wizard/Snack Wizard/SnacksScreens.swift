@@ -8,13 +8,14 @@
 
 import Foundation
 
-
-// MARK: - Screen Identifiers
-
+///
+/// Use an enum for screens so that we have additional checking.
+/// When using data from an external source (e.g. dynamic wizard) we will probably just use strings.
+///
 enum SnacksScreen {
     case selectType
     case iceCreamServe
-    case cone
+    case scoop
     case chooseTopping
     case softServeChocDip
     case softServeSprinkles
@@ -26,8 +27,8 @@ enum SnacksScreen {
             return SelectTypeScreen()
         case .iceCreamServe:
             return IceCreamServeScreen()
-        case .cone:
-            return ConeScreen()
+        case .scoop:
+            return ScoopScreen()
         case .chooseTopping:
             return ChooseToppingScreen()
         case .softServeChocDip:
@@ -62,15 +63,15 @@ struct SelectTypeScreen: ScreenContents {
 
 struct IceCreamServeScreen: ScreenContents {
     var label = "Ice Cream\n\nSelect serve"
-    var button1Title = "Cone"
+    var button1Title = "Scoop"
     var button2Title = "Soft Serve"
-    var button1Event = Event.userDidChooseIceCreamCone
+    var button1Event = Event.userDidChooseIceCreamScoop
     var button2Event = Event.userDidChooseSoftServe
     var button2Hidden = false
 }
 
-struct ConeScreen: ScreenContents {
-    var label = "Cone selected"
+struct ScoopScreen: ScreenContents {
+    var label = "Scoop selected"
     var button1Title = "Finish"
     var button2Title = ""
     var button1Event = Event.finish

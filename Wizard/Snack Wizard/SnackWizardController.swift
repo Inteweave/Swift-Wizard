@@ -16,38 +16,36 @@ typealias SnackWizard = Wizard<SnacksScreen, Event>
 /// Flows are:
 /// - choose snack
 ///   - icecream
-///     - cone
+///     - scoop
 ///     - soft serve
 ///       - choc dip
 ///       - sprinkles
 ///  - nuts
 ///```
 ///
-/// This class is responsible for creating and starting coordinators
+/// This class is responsible for creating and showing view controllers
 /// and for defining the screen navigation. For a real app the screen navigations would probably be
 /// in its own file.
 ///
 /// To add a screen, you would normally:
-/// - code the coordinator, view controller and .xib
+/// - code view controller, presenter and .xib
 /// - add an identifier for the screen
-/// - add the creation of the coordinator to the factory
+/// - add the creation of the view controller to the factory
 /// - add any new events raised by the screen
 /// - add navigations for events going to the screen and handling the events from the screen
 ///
-///
-class SnackWizardController: DidGoBackDelegate, EventDelegate {
+class SnackWizardController: EventDelegate {
 
+    let navigationController: UINavigationController
     let wizard: SnackWizard
-    var coordinators = [Coordinator]()
-    let backButtonEventDetector = BackButtonEventDetector()
-    let factory: Factory
+    let factory: SnackFactory
     var completion: (() -> Void)?
 
     init(navigationController: UINavigationController) {
-        factory = Factory(navigationController: navigationController)
-        wizard = SnackWizard(screenNavigations: SnackWizardController.screenNavigations, startScreen: SnacksScreen.selectType)
-        backButtonEventDetector.delegate = self
-        navigationController.delegate = backButtonEventDetector
+        self.navigationController = navigationController
+        wizard = SnackWizard(screenNavigations: SnackWizardController.screenNavigations)
+        factory = SnackFactory()
+        factory.delegate = self
     }
 
     ///
@@ -57,24 +55,8 @@ class SnackWizardController: DidGoBackDelegate, EventDelegate {
     ///
     func startWizard(completion: @escaping () -> Void) {
         self.completion = completion
-        factory.delegate = self
-        let coordinator = factory.coordinatorForScreen(screen: wizard.currentScreen)
-        coordinators.append(coordinator)
-        coordinator.start()
-    }
-
-    ///
-    /// The user has pressed the back button. This event is not controlled by the wizard.
-    /// Tell the wizard that it needs to pop a screen so that its current screen remains correct.
-    /// Remove the last coordinator, or complete the wizard if it is the initial screen of the wizard
-    ///
-    func backButtonPressed() {
-        wizard.back()
-        if coordinators.count == 1 {
-            completion?()
-        } else {
-            coordinators.removeLast(1)
-        }
+        let viewController = factory.viewForScreen(screen: SnacksScreen.selectType)
+        navigationController.pushViewController(viewController, animated: true)
     }
 
     ///
@@ -83,17 +65,15 @@ class SnackWizardController: DidGoBackDelegate, EventDelegate {
     ///
     /// - parameter event: The event raised
     ///
-    func onSnackSelection(_ event: Event) {
+    func event(_ event: Event, wasRaisedOnScreen screen: SnacksScreen) {
         if event == .finish {
             completion?()
-        } else if let screenIdentifier = try? wizard.onEvent(event: event) {
-            let coordinator = factory.coordinatorForScreen(screen: screenIdentifier)
-            coordinators.append(coordinator)
-            coordinator.start()
+        } else if let screenIdentifier = try? wizard.event(event: event, wasRaisedOnScreen: screen) {
+            let viewController = factory.viewForScreen(screen: screenIdentifier)
+            navigationController.pushViewController(viewController, animated: true)
         }
     }
 }
-
 
 // MARK: - Screen Navigation
 
@@ -104,60 +84,26 @@ class SnackWizardController: DidGoBackDelegate, EventDelegate {
 extension SnackWizardController {
     static let screenNavigations = [
         // from screen, on event, navigate to screen
-        ScreenNavigation(from: SnacksScreen.selectType, event: Event.userDidChooseIceCream, to: SnacksScreen.iceCreamServe),
+        ScreenNavigation(onScreen: SnacksScreen.selectType,
+                         when: Event.userDidChooseIceCream,
+                         navigateTo: SnacksScreen.iceCreamServe),
 
-        ScreenNavigation(from: SnacksScreen.iceCreamServe, event: Event.userDidChooseSoftServe, to: SnacksScreen.chooseTopping),
-        ScreenNavigation(from: SnacksScreen.iceCreamServe, event: Event.userDidChooseIceCreamCone, to: SnacksScreen.cone),
+        ScreenNavigation(onScreen: SnacksScreen.iceCreamServe,
+                         when: Event.userDidChooseSoftServe,
+                         navigateTo: SnacksScreen.chooseTopping),
+        ScreenNavigation(onScreen: SnacksScreen.iceCreamServe,
+                         when: Event.userDidChooseIceCreamScoop,
+                         navigateTo: SnacksScreen.scoop),
 
-        ScreenNavigation(from: SnacksScreen.chooseTopping, event: Event.userDidChooseChocDip, to: SnacksScreen.softServeChocDip),
-        ScreenNavigation(from: SnacksScreen.chooseTopping, event: Event.userDidChooseSprinkles, to: SnacksScreen.softServeSprinkles),
+        ScreenNavigation(onScreen: SnacksScreen.chooseTopping,
+                         when: Event.userDidChooseChocDip,
+                         navigateTo: SnacksScreen.softServeChocDip),
+        ScreenNavigation(onScreen: SnacksScreen.chooseTopping,
+                         when: Event.userDidChooseSprinkles,
+                         navigateTo: SnacksScreen.softServeSprinkles),
 
-        ScreenNavigation(from: SnacksScreen.selectType, event: Event.userDidChooseNuts, to: SnacksScreen.nuts)
+        ScreenNavigation(onScreen: SnacksScreen.selectType,
+                         when: Event.userDidChooseNuts,
+                         navigateTo: SnacksScreen.nuts)
     ]
-}
-
-// MARK: - Factory
-
-///
-/// This class is responsible for creating the coordinator for the screen
-///
-class Factory: CoordinatorFactory {
-    enum InternalError: Error {
-        case error
-    }
-
-    let navigationController: UINavigationController
-    weak var delegate: EventDelegate?
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
-
-    ///
-    /// Given the identifier for a screen return the coordinator
-    /// This one just uses a simple coordinator to illustrate navigation
-    ///
-    /// - parameter screen: The name of the screen
-    /// - returns: The corrdinator
-    ///
-    func coordinatorForScreen(screen: SnacksScreen) -> Coordinator {
-        let coordinator = SnacksCoordinator(navigationController: navigationController, screen: screen)
-        coordinator.eventDelegate = delegate!
-        return coordinator
-    }
-}
-
-// MARK: - Events
-
-///
-/// The event names used
-/// For many wizards there are standard events used by many screens such as *next*, *cancel* or *finish*
-///
-enum Event {
-    case userDidChooseIceCream
-    case userDidChooseIceCreamCone
-    case userDidChooseSoftServe
-    case userDidChooseChocDip
-    case userDidChooseSprinkles
-    case userDidChooseNuts
-    case finish
 }

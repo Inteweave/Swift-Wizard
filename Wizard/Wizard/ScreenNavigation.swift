@@ -14,7 +14,7 @@ import Foundation
 /// This can follow the UX flow; requirement is that each screen has a name
 ///
 struct ScreenNavigation<ScreenIdentifier, WizardEvent> {
-    let from: ScreenIdentifier
-    let event: WizardEvent
-    let to: ScreenIdentifier
+    let onScreen: ScreenIdentifier
+    let when: WizardEvent
+    let navigateTo: ScreenIdentifier
 }

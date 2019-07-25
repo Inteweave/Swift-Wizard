@@ -14,7 +14,7 @@ class ViewController: UIViewController {
 
     @IBAction func onStart(_ sender: Any) {
         controller = SnackWizardController(navigationController: navigationController!)
-        controller!.startWizard() {
+        controller!.startWizard {
             self.navigationController?.popToRootViewController(animated: true)
             self.controller = nil
         }

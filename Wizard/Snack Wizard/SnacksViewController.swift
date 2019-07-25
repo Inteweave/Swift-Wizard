@@ -9,27 +9,16 @@
 import UIKit
 
 ///
-/// Delegate for the view
+/// Simple view controller to act as a template for all screens
+/// The template is filled with information from the view presenter
 ///
-protocol SnacksViewDelegate: AnyObject {
-    var label: String { get }
-    var button1Title: String { get }
-    var button2Title: String { get }
-    var button2Hidden: Bool { get }
-
-    func button1Pressed()
-    func button2Pressed()
-}
-
-///
-/// Simple view controller to act as a template for all view controllers
-/// The template is filled with information from the coordinator
-///
-/// A real app would probably have a number of templates or just view controllers
+/// A real app would probably have a number of templates and maybe some screen-specific view controllers
 ///
 class SnacksViewController: UIViewController {
 
-    weak var delegate: SnacksViewDelegate?
+    // hold a strong reference to the presenter so that the memory is managed by the system
+    // as it removes view controllers
+    var viewPresenter: SnacksViewPresenter?
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var button1: UIButton!
@@ -37,8 +26,10 @@ class SnacksViewController: UIViewController {
 
     // this view controller is just for demonstration purposes
 
-    init() {
+    init(screen: SnacksScreen, eventDelegate: EventDelegate?) {
         super.init(nibName: nil, bundle: nil)
+        viewPresenter = SnacksViewPresenter(screen: screen)
+        viewPresenter?.eventDelegate = eventDelegate
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -48,18 +39,18 @@ class SnacksViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        label.text = delegate?.label
-        button1.setTitle(delegate?.button1Title, for: .normal)
-        button2.setTitle(delegate?.button2Title, for: .normal)
-        button2.isHidden = delegate?.button2Hidden ?? true
+        label.text = viewPresenter?.label
+        button1.setTitle(viewPresenter?.button1Title, for: .normal)
+        button2.setTitle(viewPresenter?.button2Title, for: .normal)
+        button2.isHidden = viewPresenter?.button2Hidden ?? true
     }
 
     @IBAction func onButton1(_ sender: Any) {
-        delegate?.button1Pressed()
+        viewPresenter?.button1Pressed()
     }
-    
+
     @IBAction func onButton2(_ sender: Any) {
-        delegate?.button2Pressed()
+        viewPresenter?.button2Pressed()
     }
-    
+
 }
